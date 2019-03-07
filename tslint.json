@@ -1,0 +1,9 @@
+{
+  "extends": "tslint:recommended",
+  "rules": {
+    "no-namespace": false,
+    "object-literal-sort-keys": false,
+    "only-arrow-functions": false
+  }
+}
+

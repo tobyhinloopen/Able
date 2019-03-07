@@ -1,0 +1,36 @@
+{
+  "name": "able",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "npm t",
+    "test": "NODE_ENV=test ts-mocha -p tsconfig.json $(find test -name \"*.spec.ts\")",
+    "clean": "rm -rf dist coverage .nyc_output",
+    "build": "tsc",
+    "dev": "npm run build && npm t",
+    "lint": "tslint -c tslint.json -p tsconfig.dev.json",
+    "fix": "npm run lint -- --fix",
+    "watch": "npm t -- --watch --watch-extensions ts --reporter min",
+    "ci": "npm run lint && npm t -- --forbid-only && npm run build",
+    "coverage": "sh ./coverage.sh"
+  },
+  "author": "Charper Bonaroo BV",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@types/expect": "^1.20.4",
+    "@types/lodash": "^4.14.122",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^11.10.5",
+    "expect": "^24.3.0",
+    "lodash": "^4.17.11",
+    "mocha": "^6.0.2",
+    "nyc": "^13.3.0",
+    "source-map-support": "^0.5.10",
+    "ts-mocha": "^6.0.0",
+    "tslint": "^5.13.1"
+  },
+  "dependencies": {
+    "typescript": "^3.3.3333"
+  }
+}
