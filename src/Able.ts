@@ -2,8 +2,8 @@ export type AbleAbilities = string[];
 export interface IAbleDefinition { [key: string]: AbleAbilities; }
 export interface IAbleValues { [key: string]: string; }
 
-export class Able {
-  public static flatten(definition: IAbleDefinition, abilities: AbleAbilities): AbleAbilities {
+export namespace Able {
+  export function flatten(definition: IAbleDefinition, abilities: AbleAbilities): AbleAbilities {
     abilities = abilities.slice();
     for (const ability of abilities) {
       const members = definition[ability];
@@ -18,7 +18,7 @@ export class Able {
     return abilities;
   }
 
-  public static extractValues(abilities: AbleAbilities): [IAbleValues, AbleAbilities] {
+  export function extractValues(abilities: AbleAbilities): [IAbleValues, AbleAbilities] {
     const values: IAbleValues = {};
     const remainder: string[] = [];
     for (const ability of abilities) {
@@ -32,18 +32,18 @@ export class Able {
     return [values, remainder];
   }
 
-  public static applyValues(abilities: AbleAbilities, values: IAbleValues): AbleAbilities {
+  export function applyValues(abilities: AbleAbilities, values: IAbleValues): AbleAbilities {
     const REGEX = /\{([^}]+)\}/;
     return abilities
       .map((ability) => ability.replace(REGEX, (original, key) => key in values ? values[key] : original))
       .filter((ability) => !REGEX.test(ability));
   }
 
-  public static getMissingAbilities(appliedAbilities: AbleAbilities, requiredAbilities: AbleAbilities): AbleAbilities {
-    return requiredAbilities.filter((ability) => !appliedAbilities.includes(ability));
+  export function getMissingAbilities(abilities: AbleAbilities, requiredAbilities: AbleAbilities): AbleAbilities {
+    return requiredAbilities.filter((ability) => !abilities.includes(ability));
   }
 
-  public static canAccess(appliedAbilities: AbleAbilities, requiredAbilities: AbleAbilities): boolean {
+  export function canAccess(appliedAbilities: AbleAbilities, requiredAbilities: AbleAbilities): boolean {
     return this.getMissingAbilities(appliedAbilities, requiredAbilities).length === 0;
   }
 }

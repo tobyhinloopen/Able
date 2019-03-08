@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class Able {
-    static flatten(definition, abilities) {
+var Able;
+(function (Able) {
+    function flatten(definition, abilities) {
         abilities = abilities.slice();
         for (const ability of abilities) {
             const members = definition[ability];
@@ -15,7 +16,8 @@ class Able {
         }
         return abilities;
     }
-    static extractValues(abilities) {
+    Able.flatten = flatten;
+    function extractValues(abilities) {
         const values = {};
         const remainder = [];
         for (const ability of abilities) {
@@ -29,18 +31,21 @@ class Able {
         }
         return [values, remainder];
     }
-    static applyValues(abilities, values) {
+    Able.extractValues = extractValues;
+    function applyValues(abilities, values) {
         const REGEX = /\{([^}]+)\}/;
         return abilities
             .map((ability) => ability.replace(REGEX, (original, key) => key in values ? values[key] : original))
             .filter((ability) => !REGEX.test(ability));
     }
-    static getMissingAbilities(appliedAbilities, requiredAbilities) {
-        return requiredAbilities.filter((ability) => !appliedAbilities.includes(ability));
+    Able.applyValues = applyValues;
+    function getMissingAbilities(abilities, requiredAbilities) {
+        return requiredAbilities.filter((ability) => !abilities.includes(ability));
     }
-    static canAccess(appliedAbilities, requiredAbilities) {
+    Able.getMissingAbilities = getMissingAbilities;
+    function canAccess(appliedAbilities, requiredAbilities) {
         return this.getMissingAbilities(appliedAbilities, requiredAbilities).length === 0;
     }
-}
-exports.Able = Able;
+    Able.canAccess = canAccess;
+})(Able = exports.Able || (exports.Able = {}));
 //# sourceMappingURL=Able.js.map

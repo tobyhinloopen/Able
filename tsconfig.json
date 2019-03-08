@@ -11,7 +11,8 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "inlineSources": true,
-    "sourceRoot": "/"
+    "sourceRoot": "/",
+    "declaration": true
   },
   "include": [
     "src/*.ts",
