@@ -63,9 +63,9 @@ describe("Able", () => {
     expect(Able.canAccess(appliedAbilities, requiredAbilities)).toEqual(true);
   });
 
-  it("canAccess() returns false if all required abilities are present", () => {
+  it("canAccess() returns false if not all required abilities are present", () => {
     const appliedAbilities = ["metabase:dashboard:4?district=1", "foo", "bar"];
-    const requiredAbilities = ["metabase:dashboard:4?district=1"];
-    expect(Able.canAccess(appliedAbilities, requiredAbilities)).toEqual(true);
+    const requiredAbilities = ["metabase:dashboard:4?district=1", "baz"];
+    expect(Able.canAccess(appliedAbilities, requiredAbilities)).toEqual(false);
   });
 });
