@@ -13,7 +13,8 @@
     "fix": "npm run lint -- --fix",
     "watch": "npm t -- --watch --watch-extensions ts --reporter min",
     "ci": "npm run lint && npm t -- --forbid-only && npm run build",
-    "coverage": "sh ./coverage.sh"
+    "coverage": "sh ./coverage.sh",
+    "precommit": "npm t && npm run build"
   },
   "author": "Charper Bonaroo BV",
   "license": "UNLICENSED",
