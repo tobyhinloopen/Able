@@ -31,4 +31,4 @@ ABLE allows you to write a "definition" that is essentially a map of abilities t
 
 ## Parameters
 
-You can create template abilities. For example, abilities: `["article:{articleId}:read", "?articleId=4"]` will have values applied to `["article:4:read"]`. You can also have arrays of values, like `["article:{articleId}:read", "?articleId=4", "?articleId=5"]` which resolves to `["article:4:read", "article:5:read"]`. Without the `[]` in the key name, the value will be overwritten rather than added.
+You can create template abilities. For example, abilities: `["article:{articleId}:read", "?articleId=4"]` will have values applied to `["article:4:read"]`. You can also have arrays of values, like `["article:{articleId}:read", "?articleId[]=4", "?articleId[]=5"]` which resolves to `["article:4:read", "article:5:read"]`. Without the `[]` in the key name, the value will be overwritten rather than added.
